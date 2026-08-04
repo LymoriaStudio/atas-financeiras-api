@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AtasFinanceiras.Application\AtasFinanceiras.Application.csproj" />
+    <ProjectReference Include="..\AtasFinanceiras.Infrastructure\AtasFinanceiras.Infrastructure.csproj" />
+    <ProjectReference Include="..\AtasFinanceiras.Domain\AtasFinanceiras.Domain.csproj" />
+    <ProjectReference Include="..\AtasFinanceiras.Migrations.Postgres\AtasFinanceiras.Migrations.Postgres.csproj" />
+    <ProjectReference Include="..\AtasFinanceiras.Migrations.SqlServer\AtasFinanceiras.Migrations.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>

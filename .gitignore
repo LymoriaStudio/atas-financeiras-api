@@ -1,0 +1,23 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## Publish
+publish/
+*.pubxml
+
+## Rider / VS Code
+.idea/
+*.swp
+
+## Environment / secrets
+.env
+appsettings.*.local.json
+appsettings.Development.json
+*.pfx
+
+## Uploaded files (local file storage dev)
+uploads/

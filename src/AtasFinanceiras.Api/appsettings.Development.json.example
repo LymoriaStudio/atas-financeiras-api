@@ -1,0 +1,32 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Database": {
+    "Provider": "Postgres"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=atas_financeiras;Username=SEU_USUARIO;Password=SUA_SENHA"
+  },
+  "Jwt": {
+    "Secret": "DEV-ONLY-troque-esta-chave-para-producao-minimo-32-caracteres",
+    "Issuer": "AtasFinanceirasApi",
+    "Audience": "AtasFinanceirasClient",
+    "AccessTokenMinutes": 60,
+    "RefreshTokenDays": 7
+  },
+  "FileStorage": {
+    "BasePath": "uploads"
+  },
+  "Cors": {
+    "AllowedOrigins": [ "http://localhost:5173" ]
+  },
+  "Seed": {
+    "AdminEmail": "admin@sbs.com.br",
+    "AdminPassword": "TROQUE-ESTA-SENHA",
+    "AdminFullName": "Administrador"
+  }
+}

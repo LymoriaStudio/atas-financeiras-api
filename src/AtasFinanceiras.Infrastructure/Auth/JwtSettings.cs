@@ -1,0 +1,13 @@
+namespace AtasFinanceiras.Infrastructure.Auth;
+
+// Vinculado à seção "Jwt" do appsettings/variáveis de ambiente (Jwt__Secret, Jwt__Issuer, etc).
+public class JwtSettings
+{
+    public const string SectionName = "Jwt";
+
+    public string Secret { get; set; } = string.Empty;
+    public string Issuer { get; set; } = string.Empty;
+    public string Audience { get; set; } = string.Empty;
+    public int AccessTokenMinutes { get; set; } = 30;
+    public int RefreshTokenDays { get; set; } = 7;
+}
