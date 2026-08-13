@@ -59,4 +59,25 @@ public class AuthController : ControllerBase
         var usuario = await _usuarioService.GetByIdAsync(_currentUser.UserId!.Value, ct);
         return Ok(usuario);
     }
+
+    // Autoatendimento: qualquer usuário logado troca a própria foto (não é ação de Admin).
+    [HttpPost("avatar")]
+    [Authorize]
+    [RequestSizeLimit(5_000_000)]
+    public async Task<IActionResult> UploadAvatar(IFormFile file, CancellationToken ct)
+    {
+        if (file.Length == 0)
+            return BadRequest(new { detail = "Arquivo vazio." });
+
+        await using var stream = file.OpenReadStream();
+        var usuario = await _usuarioService.UpdateAvatarAsync(_currentUser.UserId!.Value, new ArquivoParaUpload
+        {
+            Conteudo = stream,
+            NomeOriginal = file.FileName,
+            ContentType = file.ContentType,
+            TamanhoBytes = file.Length,
+        }, ct);
+
+        return Ok(usuario);
+    }
 }

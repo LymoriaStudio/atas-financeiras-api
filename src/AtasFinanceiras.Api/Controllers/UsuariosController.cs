@@ -52,4 +52,15 @@ public class UsuariosController : ControllerBase
         await _service.DeleteAsync(id, ct);
         return NoContent();
     }
+
+    // Público de propósito (AllowAnonymous ignora o [Authorize(Roles="Admin")] da classe):
+    // avatar de qualquer usuário precisa aparecer em telas que Editor/Viewer também acessam
+    // (ex: feed de atividades), não só pra quem gerencia usuários.
+    [HttpGet("{id:guid}/avatar")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetAvatar(Guid id, CancellationToken ct)
+    {
+        var arquivo = await _service.GetAvatarAsync(id, ct);
+        return File(arquivo.Conteudo, arquivo.ContentType);
+    }
 }
