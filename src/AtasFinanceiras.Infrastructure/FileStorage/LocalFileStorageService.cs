@@ -1,3 +1,4 @@
+using AtasFinanceiras.Application.Common.Exceptions;
 using AtasFinanceiras.Application.Interfaces.Services;
 using Microsoft.Extensions.Options;
 
@@ -36,6 +37,13 @@ public class LocalFileStorageService : IFileStorageService
         // caminhoArmazenamento sempre vem de uma entidade AtaArquivo já persistida
         // (nunca de entrada crua do usuário), então não há risco de path traversal aqui.
         var caminhoCompleto = Path.Combine(_basePath, caminhoArmazenamento);
+
+        // O registro no banco pode sobreviver a um redeploy sem volume mesmo quando o
+        // arquivo físico não sobrevive (disco efêmero) — nesse caso é um 404 de verdade,
+        // não um erro interno, e não deve vazar o caminho físico do servidor na mensagem.
+        if (!File.Exists(caminhoCompleto))
+            throw new NotFoundException("Arquivo não encontrado no armazenamento (pode ter sido perdido em um redeploy sem volume persistente).");
+
         Stream stream = File.OpenRead(caminhoCompleto);
         return Task.FromResult(stream);
     }
