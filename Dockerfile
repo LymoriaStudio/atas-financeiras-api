@@ -26,10 +26,12 @@ RUN addgroup --system appgroup \
     && chown -R appuser:appgroup /app
 
 COPY --from=build /app/publish .
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-USER appuser
-
+# Fica como root aqui de propósito — o entrypoint precisa de privilégio pra corrigir
+# a posse do volume montado em runtime antes de trocar pro usuário sem privilégios
+# (appuser) pra rodar a aplicação de fato. Ver entrypoint.sh.
 EXPOSE 8080
 
-# Railway injeta a variável PORT em runtime; se não existir (docker run local), cai pra 8080.
-ENTRYPOINT ["sh", "-c", "dotnet AtasFinanceiras.Api.dll --urls http://+:${PORT:-8080}"]
+ENTRYPOINT ["/app/entrypoint.sh"]

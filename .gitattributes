@@ -1,0 +1,3 @@
+# Scripts shell precisam de LF sempre, mesmo clonados/editados no Windows —
+# senão o container Linux falha ao interpretar o shebang (#!/bin/sh).
+*.sh text eol=lf
