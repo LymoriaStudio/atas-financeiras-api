@@ -18,6 +18,7 @@
     <ProjectReference Include="..\AtasFinanceiras.Domain\AtasFinanceiras.Domain.csproj" />
     <ProjectReference Include="..\AtasFinanceiras.Migrations.Postgres\AtasFinanceiras.Migrations.Postgres.csproj" />
     <ProjectReference Include="..\AtasFinanceiras.Migrations.SqlServer\AtasFinanceiras.Migrations.SqlServer.csproj" />
+    <ProjectReference Include="..\AtasFinanceiras.Migrations.MySql\AtasFinanceiras.Migrations.MySql.csproj" />
   </ItemGroup>
 
 </Project>

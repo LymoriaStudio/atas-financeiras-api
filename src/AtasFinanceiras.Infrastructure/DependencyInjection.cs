@@ -26,6 +26,15 @@ public static class DependencyInjection
                     options.UseSqlServer(connectionString, sql => sql
                         .MigrationsAssembly("AtasFinanceiras.Migrations.SqlServer"));
                     break;
+                case "mysql":
+                    // Versão fixa (não AutoDetect) de propósito: AutoDetect conectaria no banco
+                    // já na inicialização da aplicação, quebrando a resiliência que os outros
+                    // providers têm (a app sobe mesmo com o banco fora do ar, só falha na query).
+                    options.UseMySql(
+                        connectionString,
+                        ServerVersion.Create(new Version(8, 0, 0), Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql),
+                        mysql => mysql.MigrationsAssembly("AtasFinanceiras.Migrations.MySql"));
+                    break;
                 case "postgres":
                 default:
                     options.UseNpgsql(connectionString, npg => npg
