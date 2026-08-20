@@ -9,6 +9,7 @@ COPY ["src/AtasFinanceiras.Domain/AtasFinanceiras.Domain.csproj", "src/AtasFinan
 COPY ["src/AtasFinanceiras.Infrastructure/AtasFinanceiras.Infrastructure.csproj", "src/AtasFinanceiras.Infrastructure/"]
 COPY ["src/AtasFinanceiras.Migrations.Postgres/AtasFinanceiras.Migrations.Postgres.csproj", "src/AtasFinanceiras.Migrations.Postgres/"]
 COPY ["src/AtasFinanceiras.Migrations.SqlServer/AtasFinanceiras.Migrations.SqlServer.csproj", "src/AtasFinanceiras.Migrations.SqlServer/"]
+COPY ["src/AtasFinanceiras.Migrations.MySql/AtasFinanceiras.Migrations.MySql.csproj", "src/AtasFinanceiras.Migrations.MySql/"]
 
 RUN dotnet restore "src/AtasFinanceiras.Api/AtasFinanceiras.Api.csproj"
 
